@@ -1,0 +1,108 @@
+
+@startuml
+
+@startuml
+Class Pelicula {
+  + Int id;
+  - String tituloDistribucion;
+  - String tituloOriginal;
+  - String genero;
+  - String idiomaOriginal;
+  - String subtitulosEspanol;
+  - String paisesOrigen;[]
+  - Date anoProduccion;
+  - String urlSitioWeb;
+  - Int duracion;
+  - String clasificacionEdades;
+  - Date fechaEstrenoSantiago;
+  - String resumen;
+  - String identificador;
+  - List<Opinion>opiniones;
+  - List<Pais>paises;
+
+}
+Class Director {
+  + Int id;
+  - Int numPeliculasDirigidas;
+}
+
+Class Persona{
+  + Int id;
+  - String nombre;
+  - String edad;
+  - String rol; 
+}
+Class Actor {
+  + Int id;
+  - String nombrePersonaje;
+  - Int numPeliculasActuadas;
+}
+
+Class Critico {
+  + Int id;
+  - Int numOpiniones;
+}
+
+Class Funcion {
+  + Int id;
+  - String diaSemana;
+  - String horaInicio;
+}
+
+Class Sala {
+  + Int id;
+  - String nomrbre;
+  - String numIdentificador;
+  - Int capacidadAsientos;
+}
+
+Class Cine {
+  + Int id;
+  - String nombre;
+  - String direccion;
+  - String telefono;
+}
+
+Class Promocion {
+  + Int id;
+  - String descripcion;
+  - String detalleDescuento;
+}
+
+Class Opinion {
+  + Int id;
+  - Int calificacion;
+  - String comentario;
+  - String fechaRegistro
+  - Pelicula pelicula;
+}
+
+Class Pais {
+ - String nombre;
+ - Pelicula pelicula;
+}
+Class ActoresPeliculas{
+ - String nombre;
+}
+
+
+
+Pelicula --* Director
+Pelicula "*" --*"*" Actor
+(Pelicula, Actor) ..ActoresPeliculas
+Pelicula }|--{ Promocion
+Funcion }|-- Pelicula
+Funcion }|-- Sala
+Cine "1"--{ "*" Sala
+Opinion "1..*" }|--  "1" Pelicula
+Persona <|-- Director
+Persona <|-- Actor
+Persona <|-- Critico
+Pais "*" }|-- "1"Pelicula
+Critico "1"--* "1..*"Opinion
+@enduml
+
+
+
+
+@enduml
